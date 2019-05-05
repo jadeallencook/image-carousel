@@ -1,0 +1,45 @@
+$height: 250px;
+$width: 500px;
+$color: #333;
+$highlight: rgb(51, 96, 194);
+
+div.image-carousel {
+    display: grid;
+    grid-template-rows: $height 1fr;
+    justify-content: center;
+    max-width: $width;
+    width: 100%;
+    margin: 25px auto;
+
+    div {
+        background-color: $color;
+        width: $width;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    ul {
+        list-style: none;
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+
+        li {
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            background-color: $color;
+            margin: 0px 5px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        li.active {
+            background-color: $highlight;
+        }
+
+        li:hover {
+            opacity: 0.5;
+        }
+    }
+}
