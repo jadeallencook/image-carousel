@@ -5,26 +5,26 @@ $highlight: rgb(51, 96, 194);
 
 div.image-carousel {
     display: grid;
-    grid-template-rows: $height 1fr;
+    grid-template-rows: $height 1fr 1fr;
     justify-content: center;
     max-width: $width;
     width: 100%;
     margin: 25px auto;
 
-    div {
+    >div {
         background-color: $color;
         width: $width;
         background-size: cover;
         background-position: center center;
     }
 
-    ul {
+    >ul {
         list-style: none;
         width: 100%;
         padding: 0px;
         text-align: center;
 
-        li {
+        >li {
             display: inline-block;
             height: 20px;
             width: 20px;
@@ -34,11 +34,32 @@ div.image-carousel {
             cursor: pointer;
         }
 
-        li.active {
+        >li.active {
             background-color: $highlight;
         }
 
-        li:hover {
+        >li:hover {
+            opacity: 0.5;
+        }
+    }
+
+    >div:last-child {
+        background-color: #FFF;
+
+        >div {
+            display: inline-block;
+            text-transform: capitalize;
+            margin: 0px 5px;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        >div:hover {
             opacity: 0.5;
         }
     }

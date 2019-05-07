@@ -10,6 +10,8 @@ class ImageCarousel {
     }
 
     switch (x) {
+        x = (x < 0) ? this.images.length - 1 : x;
+        x = (x >= this.images.length) ? 0 : x;
         if (x !== this.index) {
             this.index = x;
             const buttons = new Array(...this.container.querySelectorAll('ul li'));
@@ -21,7 +23,6 @@ class ImageCarousel {
     }
 
     init() {
-        this.interval = setInterval(() => this.switch((this.index + 1 >= this.images.length) ? 0 : this.index + 1), 3000);
         this.image = document.createElement('div');
         this.image.style.backgroundImage = `url(${this.images[this.index]})`;
         this.container.appendChild(this.image);
@@ -30,13 +31,20 @@ class ImageCarousel {
             const button = document.createElement('li');
             button.setAttribute('data-num', x);
             if (x === this.index) button.classList.add('active');
-            button.onclick = () => {
-                clearInterval(this.interval);
-                this.switch(x);
-            }
+            button.onclick = () => this.switch(x);
             this.buttons.appendChild(button)
         });
         this.container.appendChild(this.buttons);
+        this.directional = document.createElement('div');
+        this.right = document.createElement('div');
+        this.right.innerText = 'next';
+        this.right.onclick = () => this.switch(this.index + 1);
+        this.left = document.createElement('div');
+        this.left.innerText = 'back';
+        this.left.onclick = () => this.switch(this.index - 1);
+        this.directional.appendChild(this.left);
+        this.directional.appendChild(this.right);
+        this.container.appendChild(this.directional);
     }
 
 }
